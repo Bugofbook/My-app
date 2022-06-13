@@ -1,7 +1,10 @@
-import {useState, useEffect  } from "react";
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
+import {useState, useEffect  } from "react"
+import Container from '@mui/material/Container'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
 import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid'
+import { Link } from 'react-router-dom'
 
 // import { useNavigate } from 'react-router-dom'
 
@@ -21,29 +24,37 @@ export const Root = () => {
     }, [test])
     return (
         <Layout>
-            <HeadMenu />
-            <Outlet />
+            <Container maxWidth={false} disableGutters>
+                <Grid container spacing={3}>
+                    <LayoutNav />
+                    <Outlet />
+                </Grid>
+            </Container>
         </Layout>
     )
 }
 
 
-const  HeadMenu = () =>  {
+const  LayoutNav = () =>  {
   return (
-    <Toolbar>
-        {/* <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ mr: 2 }}
-        >
-        <MenuIcon />
-        </IconButton> */}
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-        News
-        </Typography>
-        <Button color="inherit">Login</Button>
-    </Toolbar>
+    <AppBar position="sticky" color="primary">
+        <Toolbar>
+            <Button component={Link} variant="text" color="inherit" to="/">
+                Home
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/tictactoe">
+                井字棋
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/tictactoespecial">
+                井字棋變化版
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/gomoku">
+                五子棋簡化版
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/othello">
+                奧賽羅棋簡化版
+            </Button>
+        </Toolbar>
+        </AppBar>
   );
 }

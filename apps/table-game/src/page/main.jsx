@@ -1,5 +1,6 @@
 import {useState, useEffect  } from "react";
-import { Link } from "react-router-dom";
+import Grid from '@mui/material/Grid'
+import Typography from '@mui/material/Typography'
 export const Main = () => {
     const [test, settest] = useState('')
     useEffect(() => {
@@ -11,10 +12,23 @@ export const Main = () => {
         }
     }, [test])
     return (
-        <>
-            <h1>Main</h1>
-            <p>Main</p>
-            <Link to="/lockRegistration">裝置註冊頁面</Link>
-        </>
+        <Grid item xs={12}>
+            <title>Home Page</title>
+            <Typography variant="body1" color="initial">
+                使用nx.js + ReactHook + meterial-UI重新翻修了一次。
+            </Typography>
+            <Typography variant="body1" color="initial">
+                裡面的遊戲是為了練習JS的演算法而做的，比較不注重畫面。
+            </Typography>
+            <Typography variant="body1" color="initial">
+                預定要完成的功能：
+            </Typography>
+            <Typography variant="body1" color="initial">
+                1. 用AWS的雲服務來上傳記錄
+            </Typography>
+            <Typography variant="body1" color="initial">
+                2. 演算法的更新修改
+            </Typography>
+        </Grid>
     )
 }
