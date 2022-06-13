@@ -1,0 +1,32 @@
+{
+  "root": "libs/chess/connect",
+  "sourceRoot": "libs/chess/connect/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/chess/connect",
+        "main": "libs/chess/connect/src/index.ts",
+        "tsConfig": "libs/chess/connect/tsconfig.lib.json",
+        "assets": ["libs/chess/connect/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/chess/connect/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/chess/connect"],
+      "options": {
+        "jestConfig": "libs/chess/connect/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -3,9 +3,9 @@
 import { compose } from 'redux';
 import GameInFo from "../../component/Gameinfo";
 import GameMain from "../../component/GameMain";
-import {TicTacToeInitialData} from "../../functions/initialstatedata";
-import { SquaresDeepCopy } from "../../functions/gamebasics";
-import { addNewChess, ConeectJudge } from '../../functions/connectgame'
+import {TicTacToeInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
+import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
+import { addNewChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame'
 import useCenterHook from "../../useHook/useCenterHook";
 // import Grid from '@mui/system/Grid';
 // markup

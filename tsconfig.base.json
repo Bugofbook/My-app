@@ -15,7 +15,15 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@my-app-game/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@my-app-game/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@my-app-game/chess/board": ["libs/chess/board/src/index.ts"],
+      "@my-app-game/chess/board/*": ["libs/chess/board/src/*"],
+      "@my-app-game/chess/catch": ["libs/chess/catch/src/index.ts"],
+      "@my-app-game/chess/catch/*": ["libs/chess/catch/src/*"],
+      "@my-app-game/chess/chess": ["libs/chess/chess/src/index.ts"],
+      "@my-app-game/chess/chess/*": ["libs/chess/chess/src/*"],
+      "@my-app-game/chess/connect": ["libs/chess/connect/src/index.ts"],
+      "@my-app-game/chess/connect/*": ["libs/chess/connect/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { SquaresDeepCopy ,setChessToSquares} from "./gamebasics";
+import { SquaresDeepCopy ,setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
 
 const makeEmptyBoard = (row,column) => SquaresDeepCopy(Array(row).fill(Array(column).fill({value:"", owner:"", lock: false})))
 

@@ -1,0 +1,32 @@
+{
+  "root": "libs/chess/board",
+  "sourceRoot": "libs/chess/board/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/chess/board",
+        "main": "libs/chess/board/src/index.ts",
+        "tsConfig": "libs/chess/board/tsconfig.lib.json",
+        "assets": ["libs/chess/board/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/chess/board/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/chess/board"],
+      "options": {
+        "jestConfig": "libs/chess/board/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

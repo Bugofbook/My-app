@@ -3,9 +3,9 @@
 import { compose } from 'redux';
 import GameInFo from "../../component/Gameinfo";
 import GameMain from "../../component/GameMain";
-import {TicTacToeSpecialInitialData} from "../../functions/initialstatedata";
-import { SquaresDeepCopy } from "../../functions/gamebasics";
-import { addNewChess, removeOldChess, ConeectJudge } from '../../functions/connectgame'
+import {TicTacToeSpecialInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
+import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
+import { addNewChess, removeOldChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame'
 import useCenterHook from "../../useHook/useCenterHook";
 // markup
 export const TicTacToeSpecialPage = () => {

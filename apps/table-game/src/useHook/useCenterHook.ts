@@ -25,7 +25,6 @@ const useCenterHook = ({initialstate = {}, canputJudge =f=> f, mainchange = f=> 
           gamedata.chesshistory.reduce((_previousValue,action,index) => window.setTimeout(( () => mainchange(action.rowskey, action.columnskey) ), 1000 * index + 1000), 0)
     }
     const endProcess = (processobject, history, gameinfo) => {
-      console.log('aaa')
       const player = history[history.length - 1].nowplayer
       const newHistory = {
         squares: processobject.squares,

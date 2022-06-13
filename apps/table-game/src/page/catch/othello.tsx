@@ -3,9 +3,9 @@
 import { compose } from 'redux';
 import GameInFo from "../../component/Gameinfo";
 import GameMain from "../../component/GameMain";
-import {OthelloInitialData} from "../../functions/initialstatedata";
-import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "../../functions/gamebasics";
-import { calculationArrays } from "../../functions/catchgame";
+import {OthelloInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
+import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
+import { calculationArrays } from "@my-app-game/chess/catch/oldCatchGame";
 import useCenterHook from "../../useHook/useCenterHook";
 // markup
 export const OthelloPage = () => {
