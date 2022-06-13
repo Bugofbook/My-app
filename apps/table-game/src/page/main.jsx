@@ -15,13 +15,25 @@ export const Main = () => {
         <Grid item xs={12}>
             <title>Home Page</title>
             <Typography variant="body1" color="initial">
-                使用nx.js + ReactHook + meterial-UI重新翻修了一次。
+                使用nx.js + ReactHook + meterial-UI重新翻修。
             </Typography>
             <Typography variant="body1" color="initial">
-                裡面的遊戲是為了練習JS的演算法而做的，比較不注重畫面。
+                目標：
             </Typography>
             <Typography variant="body1" color="initial">
-                預定要完成的功能：
+                1. 練習JS的演算法。
+            </Typography>
+            <Typography variant="body1" color="initial">
+                2. monorepo的前後端整合
+            </Typography>
+            <Typography variant="body1" color="initial">
+                2. 前端可能環境：react-dom-router(github pages)、next.js、react-native或vue 
+            </Typography>
+            <Typography variant="body1" color="initial">
+                2. 後端可能環境：AWS no-server solution、express、Firebase 
+            </Typography>
+            <Typography variant="body1" color="initial">
+                近期預定要完成的功能：
             </Typography>
             <Typography variant="body1" color="initial">
                 1. 用AWS的雲服務來上傳記錄

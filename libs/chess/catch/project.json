@@ -1,0 +1,32 @@
+{
+  "root": "libs/chess/catch",
+  "sourceRoot": "libs/chess/catch/src",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/chess/catch",
+        "main": "libs/chess/catch/src/index.ts",
+        "tsConfig": "libs/chess/catch/tsconfig.lib.json",
+        "assets": ["libs/chess/catch/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/chess/catch/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/chess/catch"],
+      "options": {
+        "jestConfig": "libs/chess/catch/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

@@ -3,6 +3,10 @@
   "projects": {
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
+    "chess-board": "libs/chess/board",
+    "chess-catch": "libs/chess/catch",
+    "chess-chess": "libs/chess/chess",
+    "chess-connect": "libs/chess/connect",
     "table-game": "apps/table-game",
     "table-game-e2e": "apps/table-game-e2e"
   }
