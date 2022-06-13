@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "projects": {
+    "api": "apps/api",
+    "api-interfaces": "libs/api-interfaces",
+    "table-game": "apps/table-game",
+    "table-game-e2e": "apps/table-game-e2e"
+  }
+}
