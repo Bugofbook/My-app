@@ -23,7 +23,9 @@
       "@my-app-game/chess/chess": ["libs/chess/chess/src/index.ts"],
       "@my-app-game/chess/chess/*": ["libs/chess/chess/src/*"],
       "@my-app-game/chess/connect": ["libs/chess/connect/src/index.ts"],
-      "@my-app-game/chess/connect/*": ["libs/chess/connect/src/*"]
+      "@my-app-game/chess/connect/*": ["libs/chess/connect/src/*"],
+      "@my-app-game/reacthook/chess": ["libs/reacthook/chess/src/index.ts"],
+      "@my-app-game/reacthook/chess/*": ["libs/reacthook/chess/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
