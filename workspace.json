@@ -7,6 +7,7 @@
     "chess-catch": "libs/chess/catch",
     "chess-chess": "libs/chess/chess",
     "chess-connect": "libs/chess/connect",
+    "reacthook-chess": "libs/reacthook/chess",
     "table-game": "apps/table-game",
     "table-game-e2e": "apps/table-game-e2e"
   }

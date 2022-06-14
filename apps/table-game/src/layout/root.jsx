@@ -42,16 +42,16 @@ const  LayoutNav = () =>  {
             <Button component={Link} variant="text" color="inherit" to="/">
                 Home
             </Button>
-            <Button component={Link} variant="text" color="inherit" to="/tictactoe">
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/tictactoe">
                 井字棋
             </Button>
-            <Button component={Link} variant="text" color="inherit" to="/tictactoespecial">
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/tictactoespecial">
                 井字棋變化版
             </Button>
-            <Button component={Link} variant="text" color="inherit" to="/gomoku">
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/gomoku">
                 五子棋簡化版
             </Button>
-            <Button component={Link} variant="text" color="inherit" to="/othello">
+            <Button component={Link} variant="text" color="inherit" to="/catchchess/othello">
                 奧賽羅棋簡化版
             </Button>
         </Toolbar>

@@ -6,7 +6,7 @@ import GameMain from "../../component/GameMain";
 import {TicTacToeInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
 import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
 import { addNewChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame'
-import useCenterHook from "../../useHook/useCenterHook";
+import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
 // import Grid from '@mui/system/Grid';
 // markup
 export const TicTacToePage = () => {

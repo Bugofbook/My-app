@@ -6,7 +6,7 @@ import GameMain from "../../component/GameMain";
 import {GomokuInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
 import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
 import { addNewChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame';
-import useCenterHook from "../../useHook/useCenterHook";
+import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
 // markup
 export const GomokuPage = () => {
   const {history, gameinfo, jumpto, oneClick} = useCenterHook({initialstate: GomokuInitialData, canputJudge: canTicTacToePut, mainchange: tictactoeMainchange});

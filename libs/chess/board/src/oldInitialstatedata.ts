@@ -27,12 +27,12 @@ const TicTacToeNeedKey = {showlists : []}
 
 export const TicTacToeInitialData = {
 	history: [makeGameHistoryObject(TicTacToeBoard,TicTacToeNeedKey)],
-	gameinfo: makeGameInfoObject("TioTeoTic"),
+	gameinfo: makeGameInfoObject("TicTacToe"),
 }
 
 export const TicTacToeSpecialInitialData = {
 	history: [makeGameHistoryObject(TicTacToeBoard,TicTacToeNeedKey)],
-	gameinfo: makeGameInfoObject("TioTeoTicSpecial"),
+	gameinfo: makeGameInfoObject("TicTacToeSpecial"),
 }
 
 //

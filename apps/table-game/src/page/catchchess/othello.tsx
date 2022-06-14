@@ -6,7 +6,7 @@ import GameMain from "../../component/GameMain";
 import {OthelloInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
 import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
 import { calculationArrays } from "@my-app-game/chess/catch/oldCatchGame";
-import useCenterHook from "../../useHook/useCenterHook";
+import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
 // markup
 export const OthelloPage = () => {
   const {history, gameinfo, jumpto, oneClick} = useCenterHook({initialstate: OthelloInitialData, canputJudge: canTicTacToePut, mainchange: tictactoeMainchange});
