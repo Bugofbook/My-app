@@ -3,9 +3,6 @@
   "affected": {
     "defaultBase": "main"
   },
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
   "implicitDependencies": {
     "package.json": {
       "dependencies": "*",
@@ -17,12 +14,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ZTYzYTZiYzAtNmMyMS00Yjk3LTk4YzgtMTA1MTM5NGZlYjQ2fHJlYWQtd3JpdGU="
       }
     }
@@ -49,7 +41,14 @@
         "style": "@emotion/styled",
         "linter": "eslint"
       }
+    },
+    "@nrwl/next": {
+      "application": {
+        "style": "@emotion/styled",
+        "linter": "eslint"
+      }
     }
   },
-  "defaultProject": "table-game"
+  "defaultProject": "table-game",
+  "$schema": "./node_modules/nx/schemas/nx-schema.json"
 }

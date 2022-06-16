@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'chess-catch',
+/* eslint-disable */
+export default {
+  displayName: 'chess-connect',
   preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
@@ -10,5 +11,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../coverage/libs/chess/catch',
+  coverageDirectory: '../../../coverage/libs/chess/connect',
 };

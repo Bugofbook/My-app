@@ -1,5 +1,5 @@
 {
-  "root": "libs/chess/chess",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/chess/src",
   "targets": {
     "build": {
@@ -23,7 +23,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/chess/chess"],
       "options": {
-        "jestConfig": "libs/chess/chess/jest.config.js",
+        "jestConfig": "libs/chess/chess/jest.config.ts",
         "passWithNoTests": true
       }
     }

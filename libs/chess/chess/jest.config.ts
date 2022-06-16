@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'chess-chess',
   preset: '../../../jest.preset.js',
   globals: {

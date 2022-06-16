@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import { compose } from 'redux';
-import GameInFo from "../../component/Gameinfo";
-import GameMain from "../../component/GameMain";
+import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {OthelloInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
 import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
 import { calculationArrays } from "@my-app-game/chess/catch/oldCatchGame";
