@@ -1,5 +1,5 @@
 {
-  "root": "apps/table-game",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/table-game/src",
   "projectType": "application",
   "targets": {
@@ -37,6 +37,12 @@
           "namedChunks": false,
           "extractLicenses": true,
           "vendorChunk": false
+        },
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
         }
       }
     },
@@ -51,8 +57,12 @@
         "production": {
           "buildTarget": "table-game:build:production",
           "hmr": false
+        },
+        "development": {
+          "buildTarget": "table-game:build:development"
         }
-      }
+      },
+      "defaultConfiguration": "development"
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
@@ -65,7 +75,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/apps/table-game"],
       "options": {
-        "jestConfig": "apps/table-game/jest.config.js",
+        "jestConfig": "apps/table-game/jest.config.ts",
         "passWithNoTests": true
       }
     }

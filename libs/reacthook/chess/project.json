@@ -1,5 +1,5 @@
 {
-  "root": "libs/reacthook/chess",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/reacthook/chess/src",
   "projectType": "library",
   "tags": [],
@@ -15,7 +15,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/reacthook/chess"],
       "options": {
-        "jestConfig": "libs/reacthook/chess/jest.config.js",
+        "jestConfig": "libs/reacthook/chess/jest.config.ts",
         "passWithNoTests": true
       }
     }

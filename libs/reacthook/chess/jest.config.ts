@@ -1,4 +1,5 @@
-module.exports = {
+/* eslint-disable */
+export default {
   displayName: 'reacthook-chess',
   preset: '../../../jest.preset.js',
   transform: {

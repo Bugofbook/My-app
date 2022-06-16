@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
 import { compose } from 'redux';
-import GameInFo from "../../component/Gameinfo";
-import GameMain from "../../component/GameMain";
+import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {TicTacToeSpecialInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
 import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
 import { addNewChess, removeOldChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame'
