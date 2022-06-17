@@ -7,11 +7,11 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/table-gamr-next-e2e/cypress.json",
-        "devServerTarget": "table-gamr-next:serve:development"
+        "devServerTarget": "table-game-next:serve:development"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "table-gamr-next:serve:production"
+          "devServerTarget": "table-game-next:serve:production"
         }
       }
     },
@@ -24,5 +24,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["table-gamr-next"]
+  "implicitDependencies": ["table-game-next"]
 }

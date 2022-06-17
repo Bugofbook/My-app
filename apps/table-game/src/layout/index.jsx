@@ -1,28 +1,58 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-// import { Outlet } from "react-router-dom";
-import { ThemeProvider } from '@mui/material/styles'
-import CssBaseline from '@mui/material/CssBaseline'
-import globalTheme from '../theme/global'
-import { Global, css } from '@emotion/react'
+import {useState, useEffect  } from "react"
+import Container from '@mui/material/Container'
+import AppBar from '@mui/material/AppBar'
+import Toolbar from '@mui/material/Toolbar'
+import Button from '@mui/material/Button';
+import Grid from '@mui/material/Grid'
+import { Link } from 'react-router-dom'
 
-const globalStyles = css`
-    html,
-    body {
-        height: 100%;
-        width: 100%;
-    }
-    #root {
-        height: 100%;
-        width: 100%;
-    }
-`
-export const Layout = ({ children }) => {
+// import { useNavigate } from 'react-router-dom'
+
+// import { Root } from './root'
+import { Outlet } from "react-router-dom";
+// import { GlobalContext } from "../content/global";
+
+export const Layout = () => {
+    const [test, settest] = useState('')
+    useEffect(() => {
+        if (test !== '') {
+            console.log('test', test)
+        } else {
+            console.log('root')
+            settest('Root')
+        }
+    }, [test])
     return (
-        <ThemeProvider theme={globalTheme}>
-            <CssBaseline />
-            <Global styles={globalStyles} />
-            { children}
-        </ThemeProvider>
+        <Container maxWidth={false} disableGutters>
+            <Grid container spacing={3}>
+                <LayoutNav />
+                <Outlet />
+            </Grid>
+        </Container>
     )
+}
+
+
+const  LayoutNav = () =>  {
+  return (
+    <AppBar position="sticky" color="primary">
+        <Toolbar>
+            <Button component={Link} variant="text" color="inherit" to="/">
+                Home
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/tictactoe">
+                井字棋
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/tictactoespecial">
+                井字棋變化版
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/gomoku">
+                五子棋簡化版
+            </Button>
+            <Button component={Link} variant="text" color="inherit" to="/catchchess/othello">
+                奧賽羅棋簡化版
+            </Button>
+        </Toolbar>
+        </AppBar>
+  );
 }

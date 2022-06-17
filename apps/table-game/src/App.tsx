@@ -1,24 +1,45 @@
 import { Route, Routes } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles'
+import CssBaseline from '@mui/material/CssBaseline'
+import { Global, css } from '@emotion/react'
+
+import globalTheme from './theme/global'
 import { Login } from "./page/login";
-import { Root } from "./layout/root";
+import { Layout } from "./layout";
 import { Main } from "./page/main";
 import { OthelloPage } from './page/catchchess/othello'
 import { TicTacToePage } from './page/connectchess/tictactoe'
 import { TicTacToeSpecialPage } from './page/connectchess/tictactoespecial'
 import { GomokuPage } from './page/connectchess/gomoku'
 
+const globalStyles = css`
+    html,
+    body {
+        height: 100%;
+        width: 100%;
+    }
+    #root {
+        height: 100%;
+        width: 100%;
+    }
+`
+
 export const App = () => {
   return (
-    <Routes>
-      <Route path="/login" element={<Login />} />
-      <Route path="/" element={<Root />}>
-        <Route path="/catchchess/othello" element={<OthelloPage />} />
-        <Route path="/connectchess/tictactoe" element={<TicTacToePage />} />
-        <Route path="/connectchess/tictactoespecial" element={<TicTacToeSpecialPage />} />
-        <Route path="/connectchess/gomoku" element={<GomokuPage />} />
-        <Route path="" element={<Main />} />
-      </Route>
-    </Routes>
+    <ThemeProvider theme={globalTheme}>
+      <CssBaseline />
+      <Global styles={globalStyles} />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/" element={<Layout />}>
+          <Route path="/catchchess/othello" element={<OthelloPage />} />
+          <Route path="/connectchess/tictactoe" element={<TicTacToePage />} />
+          <Route path="/connectchess/tictactoespecial" element={<TicTacToeSpecialPage />} />
+          <Route path="/connectchess/gomoku" element={<GomokuPage />} />
+          <Route path="" element={<Main />} />
+        </Route>
+      </Routes>
+    </ThemeProvider>
   );
 };
 
