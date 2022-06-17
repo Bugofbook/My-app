@@ -1,6 +1,6 @@
 import {useState, useEffect, useContext  } from "react";
 // import { Root } from "../layout/root";
-import { Link } from "react-router-dom";
+import Link from 'next/link'
 // import { GlobalContext } from "../content/global";
 // import Axios from "axios";
 
@@ -23,7 +23,7 @@ export const Login = () => {
         <>
             <h1>login</h1>
             <p>Login</p>
-            <Link to="/">首頁</Link>
+            <Link href="/">首頁</Link>
         </>
     )
 }

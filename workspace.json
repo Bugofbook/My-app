@@ -11,7 +11,7 @@
     "reacthook-chess": "libs/reacthook/chess",
     "table-game": "apps/table-game",
     "table-game-e2e": "apps/table-game-e2e",
-    "table-gamr-next": "apps/table-gamr-next",
+    "table-game-next": "apps/table-game-next",
     "table-gamr-next-e2e": "apps/table-gamr-next-e2e"
   },
   "$schema": "./node_modules/nx/schemas/workspace-schema.json"

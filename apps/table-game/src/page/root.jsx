@@ -1,7 +1,7 @@
 import {useState, useEffect, useContext  } from "react";
 // import { useNavigate } from 'react-router-dom'
 
-import { Layout } from "../layout";
+import { Layout } from "../layout/root";
 import { Outlet } from "react-router-dom";
 // import { GlobalContext } from "../content/global";
 

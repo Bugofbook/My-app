@@ -1,6 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
-  "sourceRoot": "apps/table-gamr-next",
+  "sourceRoot": "apps/table-game-next",
   "projectType": "application",
   "targets": {
     "build": {
@@ -8,8 +8,8 @@
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/table-gamr-next",
-        "outputPath": "dist/apps/table-gamr-next"
+        "root": "apps/table-game-next",
+        "outputPath": "dist/apps/table-game-next"
       },
       "configurations": {
         "development": {},
@@ -20,16 +20,16 @@
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
-        "buildTarget": "table-gamr-next:build",
+        "buildTarget": "table-game-next:build",
         "dev": true
       },
       "configurations": {
         "development": {
-          "buildTarget": "table-gamr-next:build:development",
+          "buildTarget": "table-game-next:build:development",
           "dev": true
         },
         "production": {
-          "buildTarget": "table-gamr-next:build:production",
+          "buildTarget": "table-game-next:build:production",
           "dev": false
         }
       }
@@ -37,14 +37,14 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "table-gamr-next:build:production"
+        "buildTarget": "table-game-next:build:production"
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/table-gamr-next"],
+      "outputs": ["coverage/apps/table-game-next"],
       "options": {
-        "jestConfig": "apps/table-gamr-next/jest.config.ts",
+        "jestConfig": "apps/table-game-next/jest.config.ts",
         "passWithNoTests": true
       }
     },
@@ -52,7 +52,7 @@
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": ["apps/table-gamr-next/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": ["apps/table-game-next/**/*.{ts,tsx,js,jsx}"]
       }
     }
   },
