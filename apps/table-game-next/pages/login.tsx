@@ -4,7 +4,7 @@ import Link from 'next/link'
 // import { GlobalContext } from "../content/global";
 // import Axios from "axios";
 
-export const Login = () => {
+const Login = () => {
     const [test, settest] = useState('')
     // const { userSystem } = useContext(GlobalContext);
     // const loginProcess = async ({pCode, id, pwd}) => {
@@ -27,6 +27,7 @@ export const Login = () => {
         </>
     )
 }
+export default Login
 // passport.use(new LocalStrategy({
 //     usernameField: 'id',
 //     passwordField: 'pwd',
