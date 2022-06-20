@@ -18,6 +18,9 @@ export const Main = () => {
                 使用nx.js + ReactHook + meterial-UI重新翻修。
             </Typography>
             <Typography variant="body1" color="initial">
+                Next.js版本: https://my-app-jade-rho.vercel.app/
+            </Typography>
+            <Typography variant="body1" color="initial">
                 目標：
             </Typography>
             <Typography variant="body1" color="initial">
