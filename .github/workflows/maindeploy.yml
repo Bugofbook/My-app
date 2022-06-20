@@ -4,7 +4,8 @@ on:
     branches:
       - master
   pull_request:
-
+permissions: 
+  contents: write
 jobs:
   main:
     runs-on: ubuntu-latest
