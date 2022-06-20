@@ -20,6 +20,9 @@ const Index = () => {
                 使用nx.js + ReactHook + meterial-UI重新翻修。
             </Typography>
             <Typography variant="body1" color="initial">
+                GithubPages: https://bugofbook.github.io/My-app/
+            </Typography>
+            <Typography variant="body1" color="initial">
                 目標：
             </Typography>
             <Typography variant="body1" color="initial">
