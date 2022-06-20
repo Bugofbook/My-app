@@ -14,9 +14,9 @@ jobs:
         with:
           fetch-depth: 0
       - uses: nrwl/nx-set-shas@v2
-      - run: git init
-      - run: git config  --local  user.email "BugofBook"
-      - run: git config  --local  user.email "BugofBook@gmail.com"
       - run: npm install
       - run: npx nx build table-game --buildLibsFromSource --prod --baseHref=/My-app/
-      - run: npx gh-pages -d dist/apps/table-game
+      - uses: JamesIves/github-pages-deploy-action@v4.3.3
+        with:
+          branch: gh-pages # The branch the action should deploy to.
+          folder: dist/apps/table-game # The folder the action should deploy.
