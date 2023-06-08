@@ -22,6 +22,9 @@ const globalStyles = css`
         height: 100%;
         width: 100%;
     }
+    .backgroundcolorLightgreen {
+      background-color: lightgreen;
+    }
 `
 
 export const App = () => {
