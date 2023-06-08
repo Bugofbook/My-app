@@ -25,6 +25,9 @@ const globalStyles = css`
     .backgroundcolorLightgreen {
       background-color: lightgreen;
     }
+    .backgroundcolorYellow {
+      background-color: yellow;
+    }
 `
 
 export const App = () => {

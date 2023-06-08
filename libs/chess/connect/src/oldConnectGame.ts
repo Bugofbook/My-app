@@ -55,72 +55,83 @@ export const JudgeWinner = length => (CurrentPoint , Squares) =>
 // export const willConnect = ([VectorX, VectorY] = [0,0], targetlength, CurrentPoint, NowSquares, emptylength) => {
 
 // }
-// export const willConnect = (CurrentPoint, Squares) => {
-//   console.log('willConnect', CurrentPoint, Squares)
-//   const targetlength = 5
-//   const originArray = []
-//   originArray.push(CurrentPoint)
-//   for (let j = 1; j <= targetlength; j++) {
-//     const tapointx = CurrentPoint.rowskey + j
-//     const tapointy =  CurrentPoint.columnskey + j
-//     if ( tapointx >= 0 && tapointx < Squares.length && tapointy >= 0 && tapointy < Squares[tapointx].length){
-//       originArray.push(Squares[tapointx][tapointy])
-//     } else {
-//       break
-//     }
-//   }
-//   const centerChess = originArray[0]
-//   for (let i = 1; i <= targetlength; i++) {
-//     const tapointx = CurrentPoint.rowskey - i
-//     const tapointy = CurrentPoint.columnskey - i
-//     if ( tapointx >= 0 && tapointx < Squares.length && tapointy >= 0 && tapointy < Squares[tapointx].length){
-//       originArray.unshift(Squares[tapointx][tapointy])
-//     } else {
-//       break
-//     }
-//   }
-//   // const result = getMaxConnectLength(originArray, CurrentPoint.value, targetlength, 1, 0, 0, [])
-//   return result
-// }
-// const getMaxConnectLength2 = (originChesses, centerChess, connectlength, emptylength = 1, maxlength = 0, templateIndex = 0, templateEmptyItems = []) => {
-
-// }
-// export const getMaxConnectLength = (originChesses, targetValue, connectlength, emptylength = 1, maxlength = 0, templateIndex = 0, templateEmptyItems = []) => {
-//   let maxConnect = maxlength
-//   let currentIndex = templateIndex
-//   let templateMaxLength = maxlength
-//   const possibleArray = []
-//   console.log('aaa',originChesses, targetValue, connectlength, emptylength, maxlength, templateIndex, templateEmptyItems)
-//   while (currentIndex <= originChesses.length - 1) {
-//     console.log('bbb',currentIndex,  originChesses.length - 1)
-//     const currentChess = originChesses[templateIndex]
-//     if (currentChess?.value === targetValue) {
-//       currentIndex += 1
-//       templateMaxLength += 1
-//     } else if (currentChess?.value) {
-//       currentIndex += 1
-//       maxConnect = Math.max(maxConnect, templateMaxLength)
-//       templateMaxLength = 0
-//     } else {
-//       if (emptylength !== 0) {
-//         const newResult = getMaxConnectLength(originChesses, targetValue, connectlength, emptylength - 1, templateMaxLength + 1, currentIndex+1, [...templateEmptyItems, currentChess])
-//         possibleArray.push(newResult)
-//       }
-//       currentIndex += 1
-//       maxConnect = Math.max(maxConnect, templateMaxLength)
-//       templateMaxLength = 0
-//     }
-//   }
-//   return possibleArray.reduce((pre, cur) => {
-//     if (cur[0] > pre[0][0]) {
-//       return [cur]
-//     } else if (cur[0] === pre[0][0]) {
-//       return [...pre, cur]
-//     } else {
-//       return pre
-//     }
-//   }, [[maxConnect, templateEmptyItems]])
-// }
+export const willConnectList = (CurrentPoint, Squares) => {
+  const RowArray = oneVectorWillConnect(CurrentPoint, Squares, [1,0], 1)
+  const ColumnArray = oneVectorWillConnect(CurrentPoint, Squares, [0,1], 1)
+  const SlashArray = oneVectorWillConnect(CurrentPoint, Squares, [1,1], 1)
+  const BackSlashArray = oneVectorWillConnect(CurrentPoint, Squares, [1,-1], 1)
+  return [...RowArray, ...ColumnArray, ...SlashArray, ...BackSlashArray]
+}
+const oneVectorWillConnect = (CurrentPoint, Squares, [VectorX, VectorY] = [0,0], maxEmptylength = 1) => {
+  const targetlength = Squares.length
+  const originArray = []
+  originArray.push(CurrentPoint)
+  const leftSide = []
+  for (let j = 1; j <= targetlength; j++) {
+    const tapointx = CurrentPoint.rowskey - j * VectorY
+    const tapointy =  CurrentPoint.columnskey - j * VectorX
+    if ( tapointx >= 0 && tapointx < Squares.length && tapointy >= 0 && tapointy < Squares[tapointx].length){
+      leftSide.push(({...Squares[tapointx][tapointy], rowskey: tapointx, columnskey: tapointy}))
+    } else {
+      break
+    }
+  }
+  const left = onesideLengthArr(leftSide, CurrentPoint, 1)
+  const rightSide = []
+  for (let i = 1; i <= targetlength; i++) {
+    const tapointx = CurrentPoint.rowskey + i * VectorY
+    const tapointy = CurrentPoint.columnskey + i * VectorX
+    if ( tapointx >= 0 && tapointx < Squares.length && tapointy >= 0 && tapointy < Squares[tapointx].length){
+      rightSide.push({...Squares[tapointx][tapointy], rowskey: tapointx, columnskey: tapointy})
+    } else {
+      break
+    }
+  }
+  const right = onesideLengthArr(rightSide, CurrentPoint, maxEmptylength)
+  const resultArray = []
+  if (left.length === 0 && right.length === 0) {
+    return []
+  }
+  if (left.length === 0) {
+    return right.map(item => [item[1] + 1, item[2]]).filter(item => item[0] > 1)
+  }
+  if (right.length === 0) {
+    return left.map(item => [item[1] + 1, item[2]]).filter(item => item[0] > 1)
+  }
+  left.forEach((item, index) => {
+    const targetRight = right.find(item => item[0] + index === 1)
+    if (targetRight) {
+      resultArray.push([item[1] + targetRight[1] + 1, [...item[2], ...targetRight[2]]])
+    }
+  })
+  return resultArray
+}
+const onesideLengthArr = (originChesses, startChess, maxEmptylength = 1) => {
+  if (originChesses.length === 0) {
+    return []
+  }
+  const value = startChess.value
+  const resultArray = []
+  const emptyChessArray = []
+  let templateEmptyItems = maxEmptylength
+  let templateMaxLength = 0
+  while (templateMaxLength <= originChesses.length - 1) {
+    const currentChessValue = originChesses[templateMaxLength].value || ''
+    if (!currentChessValue) { // ''
+      if (templateEmptyItems !== 0) {
+        resultArray.push([maxEmptylength - templateEmptyItems, templateMaxLength, [...emptyChessArray]])
+        emptyChessArray.push(originChesses[templateMaxLength])
+        templateEmptyItems -= 1
+      } else {
+        return [...resultArray, [maxEmptylength, templateMaxLength, [...emptyChessArray]]]
+      }
+    } else if (currentChessValue !== value) {
+      return [...resultArray, [maxEmptylength - templateEmptyItems, templateMaxLength, [...emptyChessArray]]]
+    }
+    templateMaxLength += 1
+  }
+  return [...resultArray, [maxEmptylength, templateMaxLength, [...emptyChessArray]]]
+}
 
 // remove the most old chess
 export const removeOldChess = (ProcessObject = {}) => {

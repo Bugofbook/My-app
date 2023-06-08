@@ -27,6 +27,7 @@ const useCenterHook = ({initialstate = {}, canputJudge =f=> f, mainchange = f=> 
     const endProcess = (processobject, history, gameinfo) => {
       const player = history[history.length - 1].nowplayer
       const newHistory = {
+        ...processobject,
         squares: processobject.squares,
         showlists: processobject.lists,
         nowplayer: (player === "player1") ? "player2" : "player1"

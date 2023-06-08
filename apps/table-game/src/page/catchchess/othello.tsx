@@ -21,20 +21,30 @@ const getNextPlayerChesses = (chess, squares=[[]]) => {
   }
   return resultArray
 }
+// const tipConditionFn = () => (chess) => {
 
+// }
 const markEnforce = (currentBoard, gameinfo) => {
+  const newCurrentBoard = JSON.parse(JSON.stringify(currentBoard))
   let lockChesskeys = []
   if (gameinfo.turns === 0) {
     lockChesskeys = ['4-2', '5-3', '2-4', '3-5']
   } else {
     const chess = gameinfo.actionlists[gameinfo.turns - 1]
-    const nextPlayerChesses = getNextPlayerChesses(chess, currentBoard.squares)
+    const nextPlayerChesses = getNextPlayerChesses(chess, newCurrentBoard.squares)
     const newLineArray = nextPlayerChesses.flatMap((currentChess) => {
-      return calculationPushableArrays(currentChess, currentBoard.squares).filter(array => array.length > 0)
+      return calculationPushableArrays(currentChess, newCurrentBoard.squares).filter(array => array.length > 0)
     })
-    lockChesskeys = newLineArray.flatMap((array) => array.reverse()[0]).map(item => `${item.rowskey}-${item.columnskey}`)
+    const newArray = newLineArray.flatMap((array) => array.reverse()[0]).map(item => `${item.rowskey}-${item.columnskey}`)
+    lockChesskeys = newArray
   }
-  const newSquares = SquaresDeepCopy(currentBoard.squares)
+  const newSquares = SquaresDeepCopy(newCurrentBoard.squares)
+  if (lockChesskeys.length === 0) {
+    const newplayer = newCurrentBoard.nowplayer === 'player1' ? 'player2' : 'player1'
+    newCurrentBoard.nowplayer = newplayer
+    console.log('aaa', newCurrentBoard.nowplayer)
+    console.log('aaa')
+  }
   for (let i1 = 0,i1th = newSquares.length; i1 < i1th; i1++) {
     for (let i2 = 0, i2th = newSquares[i1].length; i2 < i2th; i2++) {
       const element = newSquares[i1][i2];
@@ -50,8 +60,8 @@ const markEnforce = (currentBoard, gameinfo) => {
       }
     }
   }
-  currentBoard.squares = newSquares
-  return currentBoard
+  newCurrentBoard.squares = newSquares
+  return newCurrentBoard
 }
 
 // markup
@@ -89,7 +99,7 @@ const TicTacToeRule =
 		<li>雙方輪流放子</li>
 		<li>當棋盤上都放滿棋子時，棋子多的玩家得勝</li>
 		<li>有一方沒有棋子時，另一方得勝</li>
-		<li>只有標記綠色的格子才能下棋子的地方</li>
+		<li>標記綠色的格子是建議下棋子的地方</li>
 	</>
 
 const canTicTacToePut = (gamehistory, gameinfo, rowskey, columnskey) => {
@@ -135,7 +145,6 @@ const organizeBoard = (ProcessObject = {}) => {
 	const chess = ProcessObject.chess
 	const squares = ProcessObject.squares
 	const player = chess.owner
-  console.log('ProcessObject', ProcessObject)
 	//caculate the array to change chess	and flatten 2-dimension-array to 1-dimension-array
 	const changeArrays = calculationArrays(chess, squares).reduce((accumulator,currentValue)=> accumulator.concat(currentValue),[])
 	const changenumber = changeArrays.length
