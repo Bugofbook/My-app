@@ -1,1 +1,2 @@
-export * from './lib/ChessChess';
+export * from './oldGameBasic';
+// export * from './gameBasic';
