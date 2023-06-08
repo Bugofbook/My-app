@@ -4,43 +4,92 @@ import { compose } from 'redux';
 import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {OthelloInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
 import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
-import { calculationArrays } from "@my-app-game/chess/catch/oldCatchGame";
+import { calculationArrays, calculationPushableArrays } from "@my-app-game/chess/catch/oldCatchGame";
 import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
+
+
+const getNextPlayerChesses = (chess, squares=[[]]) => {
+  const resultArray = []
+  for (let i = 0, ith = squares.length ; i < ith; i++) {
+    const currentArray = squares[i]
+    currentArray.forEach((item, index) => {
+      if (item?.value && item.value !== chess.value) {
+        resultArray.push(({...item, rowskey: i, columnskey: index}))
+        // resultArray.push(({...item, rowskey: index, columnskey: i}))
+      }
+    })
+  }
+  return resultArray
+}
+
+const markEnforce = (currentBoard, gameinfo) => {
+  let lockChesskeys = []
+  if (gameinfo.turns === 0) {
+    lockChesskeys = ['4-2', '5-3', '2-4', '3-5']
+  } else {
+    const chess = gameinfo.actionlists[gameinfo.turns - 1]
+    const nextPlayerChesses = getNextPlayerChesses(chess, currentBoard.squares)
+    const newLineArray = nextPlayerChesses.flatMap((currentChess) => {
+      return calculationPushableArrays(currentChess, currentBoard.squares).filter(array => array.length > 0)
+    })
+    lockChesskeys = newLineArray.flatMap((array) => array.reverse()[0]).map(item => `${item.rowskey}-${item.columnskey}`)
+  }
+  const newSquares = SquaresDeepCopy(currentBoard.squares)
+  for (let i1 = 0,i1th = newSquares.length; i1 < i1th; i1++) {
+    for (let i2 = 0, i2th = newSquares[i1].length; i2 < i2th; i2++) {
+      const element = newSquares[i1][i2];
+      if (element?.value) {
+        element.lock = true
+        element.classname = ''
+      } else if (lockChesskeys.includes(`${i1}-${i2}`)) {
+        element.lock = false
+        element.classname = 'backgroundcolorLightgreen'
+      } else {
+        element.lock = true
+        element.classname = ''
+      }
+    }
+  }
+  currentBoard.squares = newSquares
+  return currentBoard
+}
+
 // markup
 export const OthelloPage = () => {
   const {history, gameinfo, jumpto, oneClick} = useCenterHook({initialstate: OthelloInitialData, canputJudge: canTicTacToePut, mainchange: tictactoeMainchange});
   const currentBoard = history[gameinfo.turns]
   const players = {
-    player1: "Tom",
-    player2: "Jerry",
+    player1: "Black",
+    player2: "White",
   }
   const gamerule = TicTacToeRule
+  const board = markEnforce(currentBoard, gameinfo)
   return (
     <>
       <GameMain
-        currentBoard={currentBoard}
+        currentBoard={board}
         gameinfo={gameinfo}
         players={players}
         gamerule={gamerule}
         mainchange={oneClick}
       />
-      <GameInFo 
-        players={players} 
-        history={history} 
-        gameinfo={gameinfo} 
-        // adddata={()=>this.adddata(info.gamename,info.actionlists)} 
+      <GameInFo
+        players={players}
+        history={history}
+        gameinfo={gameinfo}
         jumpto={(step) => jumpto(step)}
       />
     </>
   )
 }
 
-const TicTacToeRule =  
+const TicTacToeRule =
 	<>
 		<li>是奧賽羅棋的”極簡化版“</li>
 		<li>雙方輪流放子</li>
 		<li>當棋盤上都放滿棋子時，棋子多的玩家得勝</li>
-		<li>還沒有限制下棋子的地方，之後會補上功能</li>
+		<li>有一方沒有棋子時，另一方得勝</li>
+		<li>只有標記綠色的格子才能下棋子的地方</li>
 	</>
 
 const canTicTacToePut = (gamehistory, gameinfo, rowskey, columnskey) => {
@@ -86,6 +135,7 @@ const organizeBoard = (ProcessObject = {}) => {
 	const chess = ProcessObject.chess
 	const squares = ProcessObject.squares
 	const player = chess.owner
+  console.log('ProcessObject', ProcessObject)
 	//caculate the array to change chess	and flatten 2-dimension-array to 1-dimension-array
 	const changeArrays = calculationArrays(chess, squares).reduce((accumulator,currentValue)=> accumulator.concat(currentValue),[])
 	const changenumber = changeArrays.length

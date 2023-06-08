@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { useState } from 'react';    
+import { useState } from 'react';
 
 const useCenterHook = ({initialstate = {}, canputJudge =f=> f, mainchange = f=> f}) => {
     const [history, setHistory] = useState(initialstate.history);
