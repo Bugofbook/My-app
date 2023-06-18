@@ -1,4 +1,5 @@
 {
+  "name": "connect",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/connect/src",
   "targets": {
@@ -13,14 +14,14 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["libs/chess/connect/**/*.ts"]
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["coverage/libs/chess/connect"],
       "options": {
         "jestConfig": "libs/chess/connect/jest.config.ts",

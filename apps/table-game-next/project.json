@@ -1,14 +1,14 @@
 {
+  "name": "table-game-next",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/table-game-next",
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nrwl/next:build",
+      "executor": "@nx/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
-        "root": "apps/table-game-next",
         "outputPath": "dist/apps/table-game-next"
       },
       "configurations": {
@@ -17,7 +17,7 @@
       }
     },
     "serve": {
-      "executor": "@nrwl/next:server",
+      "executor": "@nx/next:server",
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "table-game-next:build",
@@ -35,13 +35,13 @@
       }
     },
     "export": {
-      "executor": "@nrwl/next:export",
+      "executor": "@nx/next:export",
       "options": {
         "buildTarget": "table-game-next:build:production"
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@nx/jest:jest",
       "outputs": ["coverage/apps/table-game-next"],
       "options": {
         "jestConfig": "apps/table-game-next/jest.config.ts",
@@ -49,7 +49,7 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
+      "executor": "@nx/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/table-game-next/**/*.{ts,tsx,js,jsx}"]
