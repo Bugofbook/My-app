@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import { SquaresDeepCopy ,setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
+import { oldSquaresDeepCopy ,oldsetChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
 
-const makeEmptyBoard = (row,column) => SquaresDeepCopy(Array(row).fill(Array(column).fill({value:"", owner:"", lock: false})))
+const makeEmptyBoard = (row,column) => oldSquaresDeepCopy(Array(row).fill(Array(column).fill({value:"", owner:"", lock: false})))
 
 const makeGameHistoryObject = (board,objecta = {}) => Object.assign({	nowplayer: "player1"},{squares: board},objecta)
-	
+
 const makeGameInfoObject = (gamename) => ({
 	gamename,
 	gamestate: "Game Begin",
@@ -16,7 +16,7 @@ const makeGameInfoObject = (gamename) => ({
 })
 
 const BoardProcessedChess = (chessarray, Board) => {
-	chessarray.reduce((presquares,nowchess) => setChessToSquares(nowchess,presquares),Board)
+	chessarray.reduce((presquares,nowchess) => oldsetChessToSquares(nowchess,presquares),Board)
 	return Board
 	}
 
@@ -43,7 +43,7 @@ export const GomokuInitialData = {
 }
 
 //
-	
+
 const  OthelloStartArray = [
 	{rowskey: 3, columnskey: 3, value: "BlackChess", owner: "player1", lock: true},
 	 {rowskey: 3, columnskey: 4, value: "WhiteChess", owner: "player1", lock: true},

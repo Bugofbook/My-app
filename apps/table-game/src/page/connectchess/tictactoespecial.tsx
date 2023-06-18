@@ -3,7 +3,7 @@
 import { compose } from 'redux';
 import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {TicTacToeSpecialInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
-import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
+import { oldSquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
 import { addNewChess, removeOldChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame'
 import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
 // markup
@@ -24,18 +24,18 @@ export const TicTacToeSpecialPage = () => {
         gamerule={gamerule}
         mainchange={oneClick}
       />
-      <GameInFo 
-        players={players} 
-        history={history} 
-        gameinfo={gameinfo} 
-        // adddata={()=>this.adddata(info.gamename,info.actionlists)} 
+      <GameInFo
+        players={players}
+        history={history}
+        gameinfo={gameinfo}
+        // adddata={()=>this.adddata(info.gamename,info.actionlists)}
         jumpto={(step) => jumpto(step)}
       />
     </>
   )
 }
 
-const TicTacToeRule =  
+const TicTacToeRule =
 	<>
 		<li>是井字棋的變化版</li>
 		<li>雙方輪流放子</li>
@@ -54,7 +54,7 @@ const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
   const history = gamehistory.slice(0, gameinfo.turns + 1);
   const current = history[history.length - 1];
   const player = current.nowplayer
-  const newsquares = SquaresDeepCopy(current.squares);
+  const newsquares = oldSquaresDeepCopy(current.squares);
   const  newchess = {
     rowskey: rowskey,
     columnskey: columnskey,

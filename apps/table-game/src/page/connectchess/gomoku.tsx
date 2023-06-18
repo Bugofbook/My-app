@@ -3,7 +3,7 @@
 import { compose } from 'redux';
 import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {GomokuInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
-import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
+import { oldSquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
 // import { addNewChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame';
 import { addNewChess, ConeectJudge, willConnectList } from '@my-app-game/chess/connect/oldConnectGame';
 import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
@@ -39,7 +39,7 @@ const markEnforce = (currentBoard, gameinfo) => {
     }
     return pre
   }, Array(6))
-  let newSquare = SquaresDeepCopy(currentBoard.squares)
+  let newSquare = oldSquaresDeepCopy(currentBoard.squares)
   newSquare = setTipToSquare([], newSquare, false, '')
   if (willconnectArray[3]?.length > 0) {
     newSquare = setTipToSquare(willconnectArray[3], newSquare, false, 'backgroundcolorYellow')
@@ -50,7 +50,7 @@ const markEnforce = (currentBoard, gameinfo) => {
   return currentBoard
 }
 const setTipToSquare = (lockChesskeys, squares, lock, className) => {
-  const newSquares = SquaresDeepCopy(squares)
+  const newSquares = oldSquaresDeepCopy(squares)
   for (let i1 = 0,i1th = newSquares.length; i1 < i1th; i1++) {
     for (let i2 = 0, i2th = newSquares[i1].length; i2 < i2th; i2++) {
       const element = newSquares[i1][i2];
@@ -116,7 +116,7 @@ const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
   const history = gamehistory.slice(0, gameinfo.turns + 1);
   const current = history[history.length - 1];
   const player = current.nowplayer
-  const newsquares = SquaresDeepCopy(current.squares);
+  const newsquares = oldSquaresDeepCopy(current.squares);
   const  newchess = {
     rowskey: rowskey,
     columnskey: columnskey,

@@ -28,24 +28,17 @@ const showChess = (value) => {
           width: "20px",
           height: "20px",
           borderRadius:"10px",
-          backgroundColor: "white",  
+          backgroundColor: "white",
           border: "1px solid #4d4d4d",
         }
       default:
         return {
           width: "20px",
           height: "20px",
-          backgroundColor: "transparent",  
+          backgroundColor: "transparent",
           borderRadius:"10px",
           cursor: 'pointer',
           border: "0px solid transparent",
         }
   }
 }
-
-/*
-const selectedStyle = {
-    backgroundColor: "white",
-    color: "slategray"
-}
-*/

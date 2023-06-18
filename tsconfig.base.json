@@ -10,7 +10,7 @@
     "importHelpers": true,
     "target": "es2015",
     "module": "esnext",
-    "lib": ["es2017", "dom"],
+    "lib": ["ES2017", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
@@ -24,6 +24,7 @@
       "@my-app-game/chess/chess/*": ["libs/chess/chess/src/*"],
       "@my-app-game/chess/connect": ["libs/chess/connect/src/index.ts"],
       "@my-app-game/chess/connect/*": ["libs/chess/connect/src/*"],
+      "@my-app-game/chess/information": ["libs/chess/information/src/index.ts"],
       "@my-app-game/react-ui/game": ["libs/react-ui/game/src/index.ts"],
       "@my-app-game/reacthook/chess": ["libs/reacthook/chess/src/index.ts"],
       "@my-app-game/reacthook/chess/*": ["libs/reacthook/chess/src/*"]

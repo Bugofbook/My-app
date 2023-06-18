@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import  { CheckSquareValue, setChessToSquares, addChessToLists } from '@my-app-game/chess/chess/oldGameBasic'
+import  { oldCheckSquareValue, oldsetChessToSquares, oldaddChessToLists } from '@my-app-game/chess/chess/oldGameBasic'
 
 //find max length for connect chesses by specil vextor
 export const FindLength = (VectorX, VectorY) => connectlength => (CurrentPoint , NowSquares) => {
     let contilen = 1
-    const CheckValue = CheckSquareValue(CurrentPoint.value)
+    const CheckValue = oldCheckSquareValue(CurrentPoint.value)
     const lengthx = NowSquares.length
     for (let i = 1 ; i < connectlength ; i++) {
         const tapointx = CurrentPoint.rowskey - i * VectorX
@@ -146,7 +146,7 @@ export const removeOldChess = (ProcessObject = {}) => {
             lock: false,
         }
         lists = lists.filter((_chess,index) => index !== 0)
-        squares = setChessToSquares(oldchess,squares)
+        squares = oldsetChessToSquares(oldchess,squares)
     }
     ProcessObject.squares = squares
     ProcessObject.lists = lists
@@ -155,9 +155,9 @@ export const removeOldChess = (ProcessObject = {}) => {
 export const addNewChess = (ProcessObject = {}) => {
     const chess = ProcessObject.chess
 //    console.log(chess)
-    ProcessObject.lists = addChessToLists(chess,ProcessObject.lists)
-	ProcessObject.actionlists = addChessToLists(chess,ProcessObject.actionlists)
-    ProcessObject.squares = setChessToSquares(chess,ProcessObject.squares)
+    ProcessObject.lists = oldaddChessToLists(chess,ProcessObject.lists)
+	ProcessObject.actionlists = oldaddChessToLists(chess,ProcessObject.actionlists)
+    ProcessObject.squares = oldsetChessToSquares(chess,ProcessObject.squares)
     return ProcessObject
 }
 

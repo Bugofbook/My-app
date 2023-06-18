@@ -3,7 +3,7 @@
 import { compose } from 'redux';
 import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {OthelloInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
-import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
+import { oldSquaresDeepCopy, oldaddChessToLists, oldsetChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
 import { calculationArrays, calculationPushableArrays } from "@my-app-game/chess/catch/oldCatchGame";
 import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
 
@@ -38,7 +38,7 @@ const markEnforce = (currentBoard, gameinfo) => {
     const newArray = newLineArray.flatMap((array) => array.reverse()[0]).map(item => `${item.rowskey}-${item.columnskey}`)
     lockChesskeys = newArray
   }
-  const newSquares = SquaresDeepCopy(newCurrentBoard.squares)
+  const newSquares = oldSquaresDeepCopy(newCurrentBoard.squares)
   if (lockChesskeys.length === 0) {
     const newplayer = newCurrentBoard.nowplayer === 'player1' ? 'player2' : 'player1'
     newCurrentBoard.nowplayer = newplayer
@@ -113,7 +113,7 @@ const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
   const history = gamehistory.slice(0, gameinfo.turns + 1);
   const current = history[history.length - 1];
   const player = current.nowplayer
-  const newsquares = SquaresDeepCopy(current.squares);
+  const newsquares = oldSquaresDeepCopy(current.squares);
   const  newchess = {
     rowskey: rowskey,
     columnskey: columnskey,
@@ -137,8 +137,8 @@ const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
 
 const addNewChess = (ProcessObject = {}) => {
 	const chess = ProcessObject.chess
-	ProcessObject.actionlists = addChessToLists(chess,ProcessObject.actionlists)
-	ProcessObject.squares = setChessToSquares(chess,ProcessObject.squares)
+	ProcessObject.actionlists = oldaddChessToLists(chess,ProcessObject.actionlists)
+	ProcessObject.squares = oldsetChessToSquares(chess,ProcessObject.squares)
 	return ProcessObject
 }
 const organizeBoard = (ProcessObject = {}) => {
@@ -150,7 +150,7 @@ const organizeBoard = (ProcessObject = {}) => {
 	const changenumber = changeArrays.length
 	//change chess by array
 	if (changenumber > 0){
-		ProcessObject.squares = changeArrays.reduce((presquares,nowchess) => setChessToSquares(nowchess,presquares),squares)
+		ProcessObject.squares = changeArrays.reduce((presquares,nowchess) => oldsetChessToSquares(nowchess,presquares),squares)
 	}
 	//re-caculate the number of player's chess
 	if (player === "player1") {

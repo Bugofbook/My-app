@@ -7,6 +7,7 @@
     "chess-catch": "libs/chess/catch",
     "chess-chess": "libs/chess/chess",
     "chess-connect": "libs/chess/connect",
+    "chess-information": "libs/chess/information",
     "react-ui-game": "libs/react-ui/game",
     "reacthook-chess": "libs/reacthook/chess",
     "table-game": "apps/table-game",
