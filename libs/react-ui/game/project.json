@@ -1,5 +1,5 @@
 {
-  "name": "reactui-game",
+  "name": "react-ui-game",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/react-ui/game/src",
   "projectType": "library",

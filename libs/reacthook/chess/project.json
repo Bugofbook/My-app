@@ -1,5 +1,5 @@
 {
-  "name": "reackhook-chess",
+  "name": "reacthook-chess",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/reacthook/chess/src",
   "projectType": "library",
