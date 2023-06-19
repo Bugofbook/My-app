@@ -1,5 +1,5 @@
 {
-  "name": "connect",
+  "name": "chess-connect",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/connect/src",
   "targets": {

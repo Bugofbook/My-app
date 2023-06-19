@@ -1,5 +1,5 @@
 {
-  "name": "chess",
+  "name": "chess-chess",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/chess/src",
   "targets": {

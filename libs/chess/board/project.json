@@ -1,5 +1,5 @@
 {
-  "name": "board",
+  "name": "chess-board",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/board/src",
   "targets": {
