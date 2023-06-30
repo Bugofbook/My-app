@@ -1,12 +1,12 @@
-import {ChessInfo } from '@my-app-game/chess/chess/type'
-import { getChessName } from '@my-app-game/chess/chess/basic'
+import type { ChessSet } from '@my-app-game/chess/chess'
+import { getChessName } from '@my-app-game/chess/chess'
 
-export function getVectorConnectLength<Type extends Record<string, unknown>>(chessesArray: Array<Array<ChessInfo<Type>>>, centerChess: ChessInfo<Type>): number {
+export function getVectorConnectLength<Type = undefined>(chessesArray: Array<Array<ChessSet | ChessSet<Type>>>, centerChess: ChessSet<Type>): number {
   const [leftChesses, rightChesses] = chessesArray
   return caculateOneVectorConnectLength(leftChesses, centerChess) + caculateOneVectorConnectLength(rightChesses, centerChess) + 1
 }
 
-function caculateOneVectorConnectLength<Type extends Record<string, unknown>>(chesses: Array<ChessInfo<Type>>, centerChess: ChessInfo<Type>): number {
+function caculateOneVectorConnectLength<Type = undefined>(chesses: Array<ChessSet | ChessSet<Type>>, centerChess: ChessSet<Type>): number {
   if (chesses.length === 0) {
     return 0
   }
@@ -14,7 +14,7 @@ function caculateOneVectorConnectLength<Type extends Record<string, unknown>>(ch
   const index = chesses.findIndex((chess) => getChessName(chess) !== centerName)
   return index === -1 ? chesses.length : index
 }
-export function getVectorWillConnectLength<Type extends Record<string, unknown>>(chessesArray: Array<Array<ChessInfo<Type>>>, centerChess: ChessInfo<Type>, maxEmptylength: number): Array<[number, number, Array<ChessInfo<Type>>]> {
+export function getVectorWillConnectLength<Type = undefined>(chessesArray: Array<Array<ChessSet | ChessSet<Type>>>, centerChess: ChessSet<Type>, maxEmptylength: number): Array<[number, number, Array<ChessSet>]> {
   const [leftChesses, rightChesses] = chessesArray
   const [leftWillArray, rightWillArray] = [caculateOneVectorWillConnectLength(leftChesses, centerChess, maxEmptylength), caculateOneVectorWillConnectLength(rightChesses, centerChess, maxEmptylength)]
   if (leftWillArray.length === 0 && rightWillArray.length === 0) {
@@ -26,7 +26,7 @@ export function getVectorWillConnectLength<Type extends Record<string, unknown>>
   if (rightWillArray.length === 0) {
     return leftWillArray.map(([emptyCount, length, chesses]) => [emptyCount, length, chesses])
   }
-  const resultArray:Array<[number, number, Array<ChessInfo<Type>>]> = []
+  const resultArray:Array<[number, number, Array<ChessSet>]> = []
   for (const [leftEmptyCount, leftMaxlength, leftChesses] of leftWillArray) {
     const lastInTarget = [...rightWillArray].reverse().find(([rightEmptyCount]) => (rightEmptyCount + leftEmptyCount) <= maxEmptylength)
     if (lastInTarget) {
@@ -36,15 +36,15 @@ export function getVectorWillConnectLength<Type extends Record<string, unknown>>
   }
   return resultArray
 }
-function caculateOneVectorWillConnectLength<Type extends Record<string, unknown>>(chesses: Array<ChessInfo<Type>>, centerChess: ChessInfo<Type>, maxEmptylength: number): Array<[number, number, Array<ChessInfo<Type>>]> {
+function caculateOneVectorWillConnectLength<Type = undefined>(chesses: Array<ChessSet | ChessSet<Type>>, centerChess: ChessSet<Type>, maxEmptylength: number): Array<[number, number, Array<ChessSet>]> {
   if (chesses.length === 0) {
     return []
   }
   const centerName = getChessName(centerChess)
   let emptyCount = 0
   let currentIndex = 0
-  const emptyChesses:Array<ChessInfo<Type>> = []
-  const resultArray:Array<[number, number, Array<ChessInfo<Type>>]> = []
+  const emptyChesses:Array<ChessSet> = []
+  const resultArray:Array<[number, number, Array<ChessSet>]> = []
   while (currentIndex <= chesses.length - 1) {
     const currentChess = chesses[currentIndex]
     const currentName = getChessName(currentChess)
@@ -57,7 +57,7 @@ function caculateOneVectorWillConnectLength<Type extends Record<string, unknown>
     resultArray.push([emptyCount, currentIndex - 1, [...emptyChesses]])
     if (currentName === '') {
       if (emptyCount < maxEmptylength) {
-        emptyChesses.push(currentChess)
+        emptyChesses.push(currentChess as ChessSet)
         emptyCount += 1
       } else {
         return resultArray

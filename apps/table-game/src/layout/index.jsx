@@ -49,6 +49,9 @@ const  LayoutNav = () =>  {
             <Button component={Link} variant="text" color="inherit" to="/connectchess/gomoku">
                 五子棋簡化版
             </Button>
+            <Button component={Link} variant="text" color="inherit" to="/connectchess/connect6">
+                六子棋
+            </Button>
             <Button component={Link} variant="text" color="inherit" to="/catchchess/othello">
                 奧賽羅棋簡化版
             </Button>

@@ -1,2 +1,2 @@
-export { GameMain } from './GameMain';
-export { GameInFo } from './Gameinfo'
+export { GameMain, showgamestate, GameMain1  } from './GameMain';
+export { GameInFo, GameInFo1 } from './Gameinfo'

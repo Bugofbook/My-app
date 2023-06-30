@@ -1,4 +1,4 @@
-import { ChessSet, ChessLocation, Squares, getChessByTwoVector, RowVector, ColumnVector, SlashVector, BackSlashVector } from '@my-app-game/chess/chess/gameBasic'
+import { ChessSet, ChessLocation, Squares, getChessByTwoVector, RowVector, ColumnVector, SlashVector, BackSlashVector } from '@my-app-game/chess/chess'
 // caculate cennectlength
 type useEmptyChessCount = number
 type connectLength = number

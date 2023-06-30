@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react';
 
-import ReacthookChess from './reacthook-chess';
+import ReacthookGame from './reacthook-game';
 
-describe('ReacthookChess', () => {
+describe('ReacthookGame', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<ReacthookChess />);
+    const { baseElement } = render(<ReacthookGame />);
     expect(baseElement).toBeTruthy();
   });
 });

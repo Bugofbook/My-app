@@ -1,9 +1,9 @@
 
-import {ChessInfo } from '@my-app-game/chess/chess/type'
-import { getChessName } from '@my-app-game/chess/chess/basic'
+import type {ChessSet } from '@my-app-game/chess/chess'
+import { getChessName } from '@my-app-game/chess/chess'
 
-export function getCatchedChesses<Type extends Record<string, unknown>>(chesses: Array<ChessInfo<Type>>, centerChess: ChessInfo<Type>): Array<ChessInfo<Type>> {
-  const resultArray:Array<ChessInfo<Type>> = []
+export function getCatchedChesses<Type>(chesses: Array<ChessSet<Type>>, centerChess: ChessSet<Type>): Array<ChessSet<Type>> {
+  const resultArray:Array<ChessSet<Type>> = []
   if (chesses.length === 0) {
     return []
   }
@@ -20,7 +20,7 @@ export function getCatchedChesses<Type extends Record<string, unknown>>(chesses:
   }
   return []
 }
-export function hasCatchedChesses<Type extends Record<string, unknown> = Record<string, never>>(chesses: Array<ChessInfo<Type>>, centerChess: ChessInfo<Type>): boolean {
+export function hasCatchedChesses<Type = undefined>(chesses: Array<ChessSet<Type>>, centerChess: ChessSet<Type>): boolean {
   if (chesses.length === 0) {
     return false
   }

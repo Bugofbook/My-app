@@ -1,5 +1,5 @@
 import { getCatchedChesses, hasCatchedChesses} from './basic'
-import { createEmptyChessInfo } from '@my-app-game/chess/chess/basic'
+import { createEmptyChessInfo } from '@my-app-game/chess/chess'
 const createBlack = (id: string, location: [number, number]) => {
   return {
     id,

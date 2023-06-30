@@ -1,32 +1,38 @@
 import { useState, useCallback } from 'react';
-
-
-
-export function useBoardState<Location extends string,BoardState, ChessState>(board: Array<Array<Location>>, startBoardState: Record<Location, BoardState>, startChessesState: Record<Location, ChessState>) {
-  const [boardState, setboardState] = useState<Record<Location, BoardState>>(startBoardState)
-  const [chessState, setchessState] = useState<Record<Location, ChessState>>(startChessesState)
-  const updateBoardState = useCallback((changeState: Record<Location, BoardState>) => {
-    setboardState((prev) => {
-      return { ...prev, ...changeState }
+import type { ChessSet } from '@my-app-game/chess/chess'
+export function useBoardState<ChessOtherType = undefined, BoardType = Record<string, unknown>>(startBoardState: Map<string, BoardType>, startChessesState: Map<string, ChessSet<ChessOtherType> | null>) {
+  const [boardMap, setboardMap] = useState<Map<string, BoardType>>(startBoardState)
+  const [chessesMap, setchessesMap] = useState<Map<string, ChessSet<ChessOtherType> | null>>(startChessesState)
+  const updateBoardState = useCallback((changeState: Map<string, BoardType>) => {
+    setboardMap((prev) => {
+      return new Map([...prev, ...changeState])
     })
   }, [])
-  const updateChessState = useCallback((changeState: Record<Location, ChessState>) => {
-    setchessState((prev) => {
-      return { ...prev, ...changeState }
+  const updateChessState = useCallback((changeState: Map<string, ChessSet<ChessOtherType>>) => {
+    setchessesMap((prev) => {
+      return new Map([...prev, ...changeState])
     })
   }, [])
   const initialBoardState = useCallback(() => {
-    setboardState(startBoardState)
+    setboardMap(startBoardState)
   }, [startBoardState])
   const initialChessState = useCallback(() => {
-    setchessState(startChessesState)
+    setchessesMap(startChessesState)
   }, [startChessesState])
+  const setBoardState = useCallback((boardMap: Map<string, BoardType>) => {
+    setboardMap(boardMap)
+  }, [])
+  const setChessState = useCallback((chessesMap: Map<string, ChessSet<ChessOtherType>>) => {
+    setchessesMap(chessesMap)
+  }, [])
   return {
-    boardState,
-    chessState,
+    boardMap,
+    chessesMap,
     updateBoardState,
     updateChessState,
     initialBoardState,
-    initialChessState
+    initialChessState,
+    setBoardState,
+    setChessState,
   }
 }

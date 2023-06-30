@@ -14,12 +14,7 @@
     "default": {
       "runner": "nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ],
+        "cacheableOperations": ["build", "lint", "test", "e2e"],
         "accessToken": "ZTYzYTZiYzAtNmMyMS00Yjk3LTk4YzgtMTA1MTM5NGZlYjQ2fHJlYWQtd3JpdGU="
       }
     }
@@ -44,7 +39,8 @@
       },
       "library": {
         "style": "@emotion/styled",
-        "linter": "eslint"
+        "linter": "eslint",
+        "unitTestRunner": "jest"
       }
     },
     "@nx/next": {

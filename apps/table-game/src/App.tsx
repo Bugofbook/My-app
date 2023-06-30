@@ -10,6 +10,7 @@ import { Main } from "./page/main";
 import { OthelloPage } from './page/catchchess/othello'
 import { TicTacToePage } from './page/connectchess/tictactoe'
 import { TicTacToeSpecialPage } from './page/connectchess/tictactoespecial'
+import { Connect6Page } from './page/connectchess/connect6'
 import { GomokuPage } from './page/connectchess/gomoku'
 
 const globalStyles = css`
@@ -41,6 +42,7 @@ export const App = () => {
           <Route path="/catchchess/othello" element={<OthelloPage />} />
           <Route path="/connectchess/tictactoe" element={<TicTacToePage />} />
           <Route path="/connectchess/tictactoespecial" element={<TicTacToeSpecialPage />} />
+          <Route path="/connectchess/connect6" element={<Connect6Page />} />
           <Route path="/connectchess/gomoku" element={<GomokuPage />} />
           <Route path="" element={<Main />} />
         </Route>
