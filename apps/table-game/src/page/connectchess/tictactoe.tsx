@@ -44,7 +44,7 @@ export const TicTacToePage = () => {
     })
     const connectLengthArray = getConnectLengthFromSquares(chessesMap,putChess)
     const isGameEnd = Math.max(...connectLengthArray) >= 3
-    dispatch(putGameActions.updateChesses([putChess]))
+    dispatch(putGameActions.updateChesses(chessesMap, [putChess]))
     dispatch(putGameActions.endTurn(gameState, [putChess], isGameEnd, currentPlayerData.player, currentPlayerData.nextPlayer, currentPlayerData.nextPlayer))
   }
   const jumpHistory = (step: number) => {

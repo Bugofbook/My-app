@@ -1,5 +1,5 @@
 import type { GameState } from '@my-app-game/chess/information'
-import type { ChessSet } from '@my-app-game/chess/chess'
+import type { ChessSet, Squares } from '@my-app-game/chess/chess'
 
 export type PassAction<Player extends string> = {
   type: 'pass',
@@ -11,13 +11,15 @@ export type PassAction<Player extends string> = {
 export type UpdateChessesAction<Player extends string> = {
   type: 'updateChesses',
   payload: {
+    chessesMap: Squares,
     chesses: Array<ChessSet>,
   }
 }
-export function updateChessesAction<Player extends string>(chesses: Array<ChessSet>): UpdateChessesAction<Player> {
+export function updateChessesAction<Player extends string>(chessesMap: Squares,chesses: Array<ChessSet>): UpdateChessesAction<Player> {
   return {
     type: 'updateChesses',
     payload: {
+      chessesMap,
       chesses,
     }
   }

@@ -19,8 +19,8 @@ export const vectorArray = [leftUpVector, upVector, rightUpVector, leftVector, r
 //   })
 //   return squares
 // }
-export function createSquaresFromChesses(chesses: Array<ChessSet>): Squares
 export function createSquaresFromChesses<Type>(chesses: Array<ChessSet<Type>>): Squares<Type>
+export function createSquaresFromChesses(chesses: Array<ChessSet>): Squares
 export function createSquaresFromChesses<Type>(chesses: Array<ChessSet<Type>>): Squares<Type> {
   const squares = new Map()
   chesses.forEach((chess) => {
@@ -30,40 +30,9 @@ export function createSquaresFromChesses<Type>(chesses: Array<ChessSet<Type>>): 
   })
   return squares
 }
-// export function getOneChessFromSquares<Type = undefined>(squares: Squares<Type>, location: ChessLocation) {
-//   return squares.get(location.join(','))
-// }
 
-// export function getChessesFromSquares<Type = undefined>(squares: Squares<Type>, locations: Array<ChessLocation>) {
-//   return locations.map(location => squares.get(location.join(',')))
-// }
-
-// export function mergeSquares<Type = undefined>(oldSquare: Squares<Type>, newSquare: Squares<Type>) {
-//   return new Map([...oldSquare, ...newSquare])
-// }
-
-export function putChessesToSquares(squares: Squares, chesses: Array<ChessSet>): Squares
-export function putChessesToSquares<Type>(squares: Squares<Type>, chesses: Array<ChessSet<Type>>): Squares<Type>
-export function putChessesToSquares<Type>(squares: Squares<Type>, chesses: Array<ChessSet<Type>>) {
-  const newSquares = new Map(squares)
-  chesses.forEach((chess) => {
-    newSquares.set(getChessSetTo(chess), chess)
-  })
-  return newSquares
-}
-
-export function deleteChessesFromSquares(squares: Squares, chesses: Array<ChessSet>): Squares
-export function deleteChessesFromSquares<Type>(squares: Squares<Type>, chesses: Array<ChessSet<Type>>): Squares<Type>
-export function deleteChessesFromSquares<Type>(squares: Squares<Type>, chesses: Array<ChessSet<Type>>) {
-  const newSquares = new Map(squares)
-  chesses.forEach((chess) => {
-    newSquares.set(getChessSetTo(chess), null)
-  })
-  return newSquares
-}
-
-export function updateSquaresFromChessSets(squares: Squares, chesses: Array<ChessSet>): Squares
 export function updateSquaresFromChessSets<Type>(squares: Squares<Type>, chesses: Array<ChessSet<Type>>): Squares<Type>
+export function updateSquaresFromChessSets(squares: Squares, chesses: Array<ChessSet>): Squares
 export function updateSquaresFromChessSets<Type>(squares: Squares<Type>, chesses: Array<ChessSet<Type>>) {
   const newSquares = new Map(squares)
   const updateChessMap: Map<string, ChessSet<Type>> = new Map()
@@ -87,8 +56,8 @@ type Option = {
 }
 type CenterChess<Type = undefined> = ChessSet<Type> & {to: ChessLocation}
 
-export function getChessesByOneVector(squares: Squares, centerChess: CenterChess, option: Option): ([VectorRow, VectorCol]: Vector) => Array<ChessSet>
 export function getChessesByOneVector<Type>(squares: Squares<Type>, centerChess: CenterChess<Type>, option: Option): ([VectorRow, VectorCol]: Vector) => Array<ChessSet | ChessSet<Type>>
+export function getChessesByOneVector(squares: Squares, centerChess: CenterChess, option: Option): ([VectorRow, VectorCol]: Vector) => Array<ChessSet>
 export function getChessesByOneVector<Type>(squares: Squares<Type>, centerChess: CenterChess<Type>, option: Option) {
   return ([VectorRow, VectorCol]: Vector): Array<ChessSet | ChessSet<Type>> => {
     const [row, col] = centerChess.to
@@ -120,8 +89,8 @@ export function getChessesByOneVector<Type>(squares: Squares<Type>, centerChess:
   }
 }
 
-export function getChessByTwoVector(squares: Squares, centerChess: CenterChess, option: Option): ([VectorRow, VectorCol]: Vector) => [Array<ChessSet>, Array<ChessSet>]
 export function getChessByTwoVector<Type>(squares: Squares<Type>, centerChess: CenterChess<Type>, option: Option): ([VectorRow, VectorCol]: Vector) => [Array<ChessSet | ChessSet<Type>>, Array<ChessSet | ChessSet<Type>>]
+export function getChessByTwoVector(squares: Squares, centerChess: CenterChess, option: Option): ([VectorRow, VectorCol]: Vector) => [Array<ChessSet>, Array<ChessSet>]
 export function getChessByTwoVector<Type>(squares: Squares<Type>, centerChess: CenterChess<Type>, option: Option) {
   const createChesses = getChessesByOneVector(squares, centerChess, option)
   return ([VectorRow, VectorCol]: Vector) => {

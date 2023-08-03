@@ -1,28 +1,14 @@
-import { useState, useCallback, useReducer } from 'react';
+import { useState, useMemo } from 'react';
 
-export function useGameHistory<T>(startData: T): [Array<T>, {
-  saveHistory: (data: T)=> void,
-  jumpHistory: (step: number) => void,
-  jumpStart: () => void
-}] {
+export function useGameHistory<T>(startData: T) {
   const [history, setHistory] = useState<Array<T>>([startData]);
-  const saveHistory = useCallback((data: T) => {
-    setHistory((history) => [...history, data])
-  },[]);
-  const jumpHistory = useCallback((step: number) => {
-    setHistory(history => history.slice(0, step + 1))
-  },[]);
-  const jumpStart = useCallback(() => {
-    console.log('jumpStart')
-    setHistory([])
-  },[]);
+  const dispatch = useMemo(() => ({
+    saveHistory: (data: T) => setHistory((history) => [...history, data]),
+    jumpHistory: (step: number) => setHistory(history => history.slice(0, step + 1)),
+    jumpStart: () => setHistory([])
+  }),[])
   return [
     history,
-    {
-      saveHistory,
-      jumpHistory,
-      jumpStart
-    }
-  ]
-  // const [state, dispatch] = useReducer()
+    dispatch
+  ] as const
 }
