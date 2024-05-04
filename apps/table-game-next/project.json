@@ -6,9 +6,7 @@
   "targets": {
     "build": {
       "executor": "@nx/next:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "outputPath": "dist/apps/table-game-next"
@@ -44,24 +42,14 @@
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": [
-        "coverage/apps/table-game-next"
-      ],
+      "outputs": ["{workspaceRoot}/coverage/apps/table-game-next"],
       "options": {
-        "jestConfig": "apps/table-game-next/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/table-game-next/jest.config.ts"
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
-      "options": {
-        "lintFilePatterns": [
-          "apps/table-game-next/**/*.{ts,tsx,js,jsx}"
-        ]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     }
   },
   "tags": []

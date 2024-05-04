@@ -16,24 +16,14 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/reacthook/chess/**/*.{ts,tsx,js,jsx}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/libs/reacthook/chess"],
+      "outputs": ["{workspaceRoot}/coverage/libs/reacthook/chess"],
       "options": {
-        "jestConfig": "libs/reacthook/chess/jest.config.ts",
-        "passWithNoTests": true
-      },
-      "configurations": {
-        "ci": {
-          "ci": true,
-          "codeCoverage": true
-        }
+        "jestConfig": "libs/reacthook/chess/jest.config.ts"
       }
     }
   }

@@ -6,18 +6,14 @@
   "tags": [],
   "targets": {
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/react-ui/game/**/*.{ts,tsx,js,jsx}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/libs/react-ui/game"],
+      "outputs": ["{workspaceRoot}/coverage/libs/react-ui/game"],
       "options": {
-        "jestConfig": "libs/react-ui/game/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/react-ui/game/jest.config.ts"
       }
     }
   }

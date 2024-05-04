@@ -3,12 +3,16 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/table-gane-expo/src",
   "projectType": "application",
+  "tags": [],
   "targets": {
     "start": {
       "executor": "@nx/expo:start",
       "options": {
         "port": 8081
-      }
+      },
+      "dependsOn": [
+        "sync-deps"
+      ]
     },
     "web": {
       "executor": "@nx/expo:start",
@@ -27,13 +31,19 @@
       "executor": "@nx/expo:run",
       "options": {
         "platform": "ios"
-      }
+      },
+      "dependsOn": [
+        "sync-deps"
+      ]
     },
     "run-android": {
       "executor": "@nx/expo:run",
       "options": {
         "platform": "android"
-      }
+      },
+      "dependsOn": [
+        "sync-deps"
+      ]
     },
     "build": {
       "executor": "@nx/expo:build",
@@ -53,25 +63,20 @@
       "executor": "@nx/expo:sync-deps",
       "options": {}
     },
-    "ensure-symlink": {
-      "executor": "@nx/expo:ensure-symlink",
-      "options": {}
-    },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["apps/table-gane-expo/**/*.{ts,tsx,js,jsx}"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": [
+        "{options.outputFile}"
+      ]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/apps/table-gane-expo"],
+      "outputs": [
+        "{workspaceRoot}/coverage/apps/table-gane-expo"
+      ],
       "options": {
-        "jestConfig": "apps/table-gane-expo/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "apps/table-gane-expo/jest.config.ts"
       }
     }
-  },
-  "tags": []
+  }
 }

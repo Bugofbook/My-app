@@ -14,18 +14,14 @@
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/chess/connect/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/libs/chess/connect"],
+      "outputs": ["{workspaceRoot}/coverage/libs/chess/connect"],
       "options": {
-        "jestConfig": "libs/chess/connect/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/chess/connect/jest.config.ts"
       }
     }
   },

@@ -11,22 +11,19 @@
         "outputPath": "dist/libs/chess/information",
         "main": "libs/chess/information/src/index.ts",
         "tsConfig": "libs/chess/information/tsconfig.lib.json",
-        "assets": ["libs/chess/information/*.md"]
+        "assets": ["libs/chess/information/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
       }
     },
     "lint": {
-      "executor": "@nx/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/chess/information/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
       "executor": "@nx/jest:jest",
-      "outputs": ["coverage/libs/chess/information"],
+      "outputs": ["{workspaceRoot}/coverage/libs/chess/information"],
       "options": {
-        "jestConfig": "libs/chess/information/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/chess/information/jest.config.ts"
       }
     }
   },
