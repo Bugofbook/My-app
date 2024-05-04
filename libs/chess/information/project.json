@@ -1,0 +1,31 @@
+{
+  "name": "chess-information",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/chess/information/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/chess/information",
+        "main": "libs/chess/information/src/index.ts",
+        "tsConfig": "libs/chess/information/tsconfig.lib.json",
+        "assets": ["libs/chess/information/*.md"],
+        "updateBuildableProjectDepsInPackageJson": true
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/chess/information"],
+      "options": {
+        "jestConfig": "libs/chess/information/jest.config.ts"
+      }
+    }
+  },
+  "tags": []
+}

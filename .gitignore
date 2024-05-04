@@ -53,3 +53,5 @@ web-build/
 
 
 apps/table-gane-expo-e2e/artifacts
+
+.nx/cache

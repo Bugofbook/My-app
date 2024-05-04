@@ -3,7 +3,7 @@
 import { compose } from 'redux';
 import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
 import {OthelloInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
-import { SquaresDeepCopy, addChessToLists, setChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
+import { oldSquaresDeepCopy, oldaddChessToLists, oldsetChessToSquares} from "@my-app-game/chess/chess/oldGameBasic";
 import { calculationArrays } from "@my-app-game/chess/catch/oldCatchGame";
 import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
 import Layout from '../../layout'
@@ -26,18 +26,18 @@ const OthelloPage = () => {
         gamerule={gamerule}
         mainchange={oneClick}
       />
-      <GameInFo 
-        players={players} 
-        history={history} 
-        gameinfo={gameinfo} 
-        // adddata={()=>this.adddata(info.gamename,info.actionlists)} 
+      <GameInFo
+        players={players}
+        history={history}
+        gameinfo={gameinfo}
+        // adddata={()=>this.adddata(info.gamename,info.actionlists)}
         jumpto={(step) => jumpto(step)}
       />
     </Layout>
   )
 }
 export default OthelloPage
-const TicTacToeRule =  
+const TicTacToeRule =
 	<>
 		<li>是奧賽羅棋的”極簡化版“</li>
 		<li>雙方輪流放子</li>
@@ -56,7 +56,7 @@ const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
   const history = gamehistory.slice(0, gameinfo.turns + 1);
   const current = history[history.length - 1];
   const player = current.nowplayer
-  const newsquares = SquaresDeepCopy(current.squares);
+  const newsquares = oldSquaresDeepCopy(current.squares);
   const  newchess = {
     rowskey: rowskey,
     columnskey: columnskey,
@@ -80,8 +80,8 @@ const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
 
 const addNewChess = (ProcessObject = {}) => {
 	const chess = ProcessObject.chess
-	ProcessObject.actionlists = addChessToLists(chess,ProcessObject.actionlists)
-	ProcessObject.squares = setChessToSquares(chess,ProcessObject.squares)
+	ProcessObject.actionlists = oldaddChessToLists(chess,ProcessObject.actionlists)
+	ProcessObject.squares = oldsetChessToSquares(chess,ProcessObject.squares)
 	return ProcessObject
 }
 const organizeBoard = (ProcessObject = {}) => {
@@ -93,7 +93,7 @@ const organizeBoard = (ProcessObject = {}) => {
 	const changenumber = changeArrays.length
 	//change chess by array
 	if (changenumber > 0){
-		ProcessObject.squares = changeArrays.reduce((presquares,nowchess) => setChessToSquares(nowchess,presquares),squares)
+		ProcessObject.squares = changeArrays.reduce((presquares,nowchess) => oldsetChessToSquares(nowchess,presquares),squares)
 	}
 	//re-caculate the number of player's chess
 	if (player === "player1") {

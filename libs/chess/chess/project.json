@@ -1,4 +1,5 @@
 {
+  "name": "chess-chess",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/chess/src",
   "targets": {
@@ -13,18 +14,14 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/chess/chess/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/chess/chess"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/chess/chess"],
       "options": {
-        "jestConfig": "libs/chess/chess/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/chess/chess/jest.config.ts"
       }
     }
   },

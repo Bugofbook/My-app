@@ -1,4 +1,5 @@
 {
+  "name": "chess-catch",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/chess/catch/src",
   "targets": {
@@ -13,18 +14,14 @@
       }
     },
     "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
-      "options": {
-        "lintFilePatterns": ["libs/chess/catch/**/*.ts"]
-      }
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/chess/catch"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/chess/catch"],
       "options": {
-        "jestConfig": "libs/chess/catch/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/chess/catch/jest.config.ts"
       }
     }
   },

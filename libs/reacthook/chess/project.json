@@ -1,22 +1,29 @@
 {
+  "name": "reacthook-chess",
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/reacthook/chess/src",
   "projectType": "library",
   "tags": [],
   "targets": {
-    "lint": {
-      "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "lintFilePatterns": ["libs/reacthook/chess/**/*.{ts,tsx,js,jsx}"]
+        "outputPath": "dist/libs/reacthook/chess",
+        "main": "libs/reacthook/chess/src/index.ts",
+        "tsConfig": "libs/reacthook/chess/tsconfig.lib.json",
+        "assets": ["libs/reacthook/chess/*.md"]
       }
     },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    },
     "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/reacthook/chess"],
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/reacthook/chess"],
       "options": {
-        "jestConfig": "libs/reacthook/chess/jest.config.ts",
-        "passWithNoTests": true
+        "jestConfig": "libs/reacthook/chess/jest.config.ts"
       }
     }
   }

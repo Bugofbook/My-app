@@ -1,76 +1,85 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
-import { compose } from 'redux';
-import { GameInFo, GameMain } from "@my-app-game/react-ui/game";
-import {TicTacToeInitialData} from "@my-app-game/chess/board/oldInitialstatedata";
-import { SquaresDeepCopy } from "@my-app-game/chess/chess/oldGameBasic";
-import { addNewChess, ConeectJudge } from '@my-app-game/chess/connect/oldConnectGame'
-import useCenterHook from "@my-app-game/reacthook/chess/oldpush";
-// import Grid from '@mui/system/Grid';
-// markup
+import { Stage } from 'react-konva';
+import { GameMain1, GameInFo1 } from "@my-app-game/react-ui/game";
+import type { UserData } from "@my-app-game/chess/information"
+import { getConnectLengthFromSquares } from '@my-app-game/chess/connect'
+import { TictactoeBoard } from '@my-app-game/react-ui/board'
+import { createChessSet } from '@my-app-game/chess/chess'
+import { usePutChessGame, putGameActions } from '@my-app-game/reacthook/game'
+const USERDATA = new Map([
+  [
+    'player1', {
+    player: 'player1',
+    nextPlayer: 'player2',
+    chessName: 'blackChess',
+  }],[
+  'player2', {
+    player: 'player2',
+    nextPlayer: 'player1',
+    chessName: 'whiteChess',
+  }
+  ]
+]) as Map<'player1' | 'player2', UserData<'player1' | 'player2'>>
+
+const SATRTCHESSES = JSON.stringify(Array(3).fill(0).flatMap((_,rowIndex) => {
+  return Array(3).fill(0).map((_,columnIndex) => [`${rowIndex},${columnIndex}`, null])
+}))
+
+const GANEINFO = {
+  gameName: '井字棋',
+}
+
 export const TicTacToePage = () => {
-  const {history, gameinfo, jumpto, oneClick} = useCenterHook({initialstate: TicTacToeInitialData, canputJudge: canTicTacToePut, mainchange: tictactoeMainchange});
-  const currentBoard = history[gameinfo.turns]
   const players = {
-    player1: "Tom",
-    player2: "Jerry",
+    player1: "黑方",
+    player2: "白方",
   }
   const gamerule = TicTacToeRule
+  const [{gameState,chessesMap, gameHistory}, dispatch] = usePutChessGame<'player1' | 'player2'>(SATRTCHESSES, 'player1')
+  const putOneChess = (location: string) => {
+    const currentPlayerData = USERDATA.get(gameState.player) as UserData<'player1' | 'player2'>
+    const putChess = createChessSet({
+      name: currentPlayerData.chessName,
+      to: location.split(',').map((item) => parseInt(item, 10)),
+      owner: currentPlayerData.player,
+    })
+    const connectLengthArray = getConnectLengthFromSquares(chessesMap,putChess)
+    const isGameEnd = Math.max(...connectLengthArray) >= 3
+    dispatch(putGameActions.updateChesses(chessesMap, [putChess]))
+    dispatch(putGameActions.endTurn(gameState, [putChess], isGameEnd, currentPlayerData.player, currentPlayerData.nextPlayer, currentPlayerData.nextPlayer))
+  }
+  const jumpHistory = (step: number) => {
+    dispatch(putGameActions.jumpHistory(gameHistory, step))
+  }
+
   return (
     <>
-    {/* <Grid container spacing={3}> */}
-      <GameMain
-        currentBoard={currentBoard}
-        gameinfo={gameinfo}
-        players={players}
+      <GameMain1
+        gameState={gameState}
+        gameinfo={GANEINFO}
+        UserData={players}
         gamerule={gamerule}
-        mainchange={oneClick}
+      >
+        <Stage width={30 * 3 + 100} height={30 * 3 + 100}>
+          <TictactoeBoard
+            tableX={48}
+            tableY={48}
+            gameState={gameState.gameState}
+            chessesList={chessesMap}
+            onClickSquare={putOneChess}
+            />
+        </Stage>
+      </GameMain1>
+      <GameInFo1
+        UserData={players}
+        history={gameHistory}
+        jumpto={jumpHistory}
       />
-      <GameInFo 
-        players={players} 
-        history={history} 
-        gameinfo={gameinfo} 
-        // adddata={()=>this.adddata(info.gamename,info.actionlists)} 
-        jumpto={(step) => jumpto(step)}
-      />
-      {/* </Grid> */}
     </>
   )
 }
 
-const TicTacToeRule =  
+const TicTacToeRule =
 	<>
 		<li>雙方輪流放子</li>
 		<li>先連成一線者得勝</li>
 	</>
-
-const canTicTacToePut = (gamehistory, gameinfo, rowskey, columnskey) => {
-  if (gameinfo.gamestate === "Game End") {
-    return false
-  }
-  const currentBoard = gamehistory[gamehistory.length - 1].squares
-  return !currentBoard[rowskey][columnskey].lock
-}
-const tictactoeMainchange = (gamehistory, gameinfo, rowskey, columnskey) => {
-  const history = gamehistory.slice(0, gameinfo.turns + 1);
-  const current = history[history.length - 1];
-  const player = current.nowplayer
-  const newsquares = SquaresDeepCopy(current.squares);
-  const  newchess = {
-    rowskey: rowskey,
-    columnskey: columnskey,
-    value: (player === "player1") ? "BlackChess" : "WhiteChess",
-    owner: player,
-    lock: true,
-  }
-  return compose(
-    ConeectJudge(3),
-    addNewChess
-    )({
-      squares: newsquares,
-      lists: current.showlists.slice(),
-      actionlists: gameinfo.actionlists.slice(),
-      chess: newchess,
-      gamestate: gameinfo.gamestate,
-    })
-}
